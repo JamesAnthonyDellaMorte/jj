@@ -17,7 +17,7 @@ use std::collections::HashMap;
 use clap_complete::ArgValueCandidates;
 use itertools::Itertools as _;
 use jj_lib::backend::CommitId;
-use jj_lib::object_id::ObjectId;
+use jj_lib::object_id::ObjectId as _;
 use jj_lib::ref_name::RemoteRefSymbolBuf;
 use jj_lib::repo::Repo as _;
 use jj_lib::revset::RevsetExpression;
@@ -240,17 +240,12 @@ pub fn cmd_git_sync(
         if total_abandoned_commits > 0 {
             writeln!(
                 ui.status(),
-                "Synced and rebased {} commits ({} already merged) across {} bookmark updates.",
-                total_rebased_commits,
-                total_abandoned_commits,
-                num_rebased_stacks
+                "Synced and rebased {total_rebased_commits} commits ({total_abandoned_commits} already merged) across {num_rebased_stacks} bookmark updates."
             )?;
         } else {
             writeln!(
                 ui.status(),
-                "Synced and rebased {} commits across {} bookmark updates.",
-                total_rebased_commits,
-                num_rebased_stacks
+                "Synced and rebased {total_rebased_commits} commits across {num_rebased_stacks} bookmark updates."
             )?;
         }
     } else {
